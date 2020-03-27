@@ -10,15 +10,14 @@ function preload() {
 }
 
 function modeleCharge() {
-  // Initialize the Image Classifier method with MobileNet
+  
   const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
 
-  // When the model is loaded
+
   function modelLoaded() {
     console.log("Model Loaded!");
   }
 
-  // Make a prediction with a selected image
   classifier.classify(document.getElementById("image"), (err, results) => {
     console.log(results);
   });
@@ -26,10 +25,9 @@ function modeleCharge() {
 }
 
 function setup() {
-  // il faut initialiser le canvas & dessiner l'imagecreateCanvas(400, 400);
-  classifier.classify(img, gotResult);
-  Fill(255,255,255);
-  imageCreateCanvas(img, 400, 400);
+
+  imageCreateCanvas(800,800);
+  image(gImage, 400, 400);
   
 }
 
