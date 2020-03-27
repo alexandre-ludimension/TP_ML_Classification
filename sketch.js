@@ -1,4 +1,3 @@
-
 // Initialize the Image Classifier method with MobileNet. A callback needs to be passed.
 let gClassifier;
 
@@ -6,27 +5,44 @@ let gClassifier;
 let gImage;
 
 function preload() {
-  gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/hat.png');
+  gClassifier = ml5.imageClassifier("MobileNet", modeleCharge);
+  gImage = loadImage("img/hat.png");
 }
-function modeleCharge()
-{
-  //le modèle est chargé, on peut traiter la donnée
-  // il faut classifier
 
+function modeleCharge() {
+  // Initialize the Image Classifier method with MobileNet
+  const classifier = ml5.imageClassifier("MobileNet", modelLoaded);
+
+  // When the model is loaded
+  function modelLoaded() {
+    console.log("Model Loaded!");
+  }
+
+  // Make a prediction with a selected image
+  classifier.classify(document.getElementById("image"), (err, results) => {
+    console.log(results);
+  });
+  // il faut classifier
 }
 
 function setup() {
- // il faut initialiser le canvas & dessiner l'image
+  // il faut initialiser le canvas & dessiner l'imagecreateCanvas(400, 400);
+  classifier.classify(img, gotResult);
+  Fill(255,255,255);
+  imageCreateCanvas(img, 400, 400);
+  
 }
 
-// A appeler à la fin de la classification 
+// A appeler à la fin de la classification
 function classification_done(error, results) {
   // cas d'erreur
   if (error) {
     console.error(error);
   }
-  
-// afficher le résultat en texte en rouge dessous l'image
-
+  else {
+  console.log(results);
+    createDiv('Label: ' + results[0].label);
+    createDiv('Confidence: ' + nf(results[0].confidence, 0, 2));
+  }
+  // afficher le résultat en texte en rouge dessous l'image
 }
