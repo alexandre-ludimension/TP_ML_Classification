@@ -20,7 +20,8 @@ function modeleCharge()
 function setup() 
 {
  // il faut initialiser le canvas & dessiner l'image
- createCanvas(800, 800);
+ createCanvas(500, 500);
+ background(128);
  image(gImage, 0, 0, 200, 200);
 }
 
@@ -31,6 +32,13 @@ function classification_done(error, results) {
     console.error(error);
   }
   console.log(results);
+
+  let lTextSize = 20;
+  fill(255);
+  textSize(lTextSize);
+  text('Objet trouvé = ' + results[0].label, 0, height-100);
+  text('Confidence = ' + results[0].confidence, 0, height-50);
+   
   
 // afficher le résultat en texte en rouge dessous l'image
 
