@@ -8,6 +8,7 @@ let gImage;
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
   gImage = loadImage('img/snake.jpg');
+  
 }
 function modeleCharge()
 {
@@ -20,7 +21,9 @@ function setup() {
  // il faut initialiser le canvas & dessiner l'image
  createCanvas(400, 300);
  image(gImage, 0, 0,400,300);
+
 }
+
 
 // A appeler à la fin de la classification 
 function classification_done(error, results) {
