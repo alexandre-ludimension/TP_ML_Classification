@@ -13,6 +13,7 @@ function modeleCharge()
 {
   //le modèle est chargé, on peut traiter la donnée
   // il faut classifier
+  gClassifier.classify(gImage, classification_done)
 
 }
 
@@ -29,6 +30,7 @@ function classification_done(error, results) {
   if (error) {
     console.error(error);
   }
+  console.log(results);
   
 // afficher le résultat en texte en rouge dessous l'image
 
