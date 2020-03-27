@@ -7,7 +7,7 @@ let gImage;
 
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/mug.jpg');
+  gImage = loadImage('img/chaise.jpg');
 }
 function modeleCharge()
 {
