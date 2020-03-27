@@ -7,7 +7,7 @@ let gImage;
 
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/chaise.jpg');
+  gImage = loadImage('img/snake.jpg');
 }
 function modeleCharge()
 {
@@ -18,8 +18,8 @@ function modeleCharge()
 
 function setup() {
  // il faut initialiser le canvas & dessiner l'image
- createCanvas(400, 400);
- image(gImage, 0, 0,400,400);
+ createCanvas(400, 300);
+ image(gImage, 0, 0,400,300);
 }
 
 // A appeler à la fin de la classification 
@@ -32,7 +32,7 @@ function classification_done(error, results) {
 // afficher le résultat en texte en rouge dessous l'image
   for (let i=0; i<3; i++)
   {
-    createDiv('Label: ' + results[i].label);
-    createDiv('Confidence: ' + Math.round(results[i].confidence*100)+"%");
+    createDiv('<p><strong>Classe:</strong> ' + results[i].label +"<br/>" +
+              '<strong>Confiance:</strong> ' + Math.round(results[i].confidence*100)+"%</p>");
   }
 }
