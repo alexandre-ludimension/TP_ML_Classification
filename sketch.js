@@ -18,9 +18,9 @@ function modeleCharge()
 
 function setup() {
  // il faut initialiser le canvas & dessiner l'image
- createCanvas(400,400);
- gClassifier.classify(img, gotImage);
- image(img,0,0);
+ createCanvas(800,800);
+ gClassifier.classify(gImage, classification_done);
+ image(gImage,0,0);
 }
 
 
