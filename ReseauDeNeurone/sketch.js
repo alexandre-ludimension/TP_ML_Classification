@@ -71,14 +71,11 @@ function changeColor(pEvent)
 
   console.log("r: "+r+" g: "+g+" b: "+b);
 
- 
 
 
   //console.log(lResult);
   // on demande au réseau de neurone de faire la classification, et de nous indiquer le label le plus probable.
   // asynchrone encore, en appelant notre fonction gotResult
-  let lColors = {r,g,b};
-  gBrain.classify(lColors, gotResult);
 
 }
 
@@ -97,13 +94,5 @@ function gotResult(pError, pResults)
     console.error(pError);
     return;
   }
-
-  // si clair texte foncé
-  // sinon l'inverse
-  console.log(pResults);
-  gExample.style.color = pResults[0].label === "foncé" ? "white": "black";
-  // changer la couleur de fond
-  gExample.style.background = gColor;
-  //
 
 }
