@@ -11,7 +11,7 @@ function preload()
   gVideo = createCapture(VIDEO);
   gVideo.hide();
   gClassifier = ml5.imageClassifier('MobileNet', gVideo, modeleCharge);
-  gImage = loadImage('img/macaw.jpg');
+  //gImage = loadImage('img/macaw.jpg');
 }
 function modeleCharge()
 {
