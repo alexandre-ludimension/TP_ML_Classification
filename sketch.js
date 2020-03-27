@@ -10,7 +10,7 @@ function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
   gImage = loadImage('img/hat.png');
 }
-function modeleCharge()
+function modeleCharge() 
 {
   console.log('Model Loaded!');
   //le modèle est chargé, on peut traiter la donnée
