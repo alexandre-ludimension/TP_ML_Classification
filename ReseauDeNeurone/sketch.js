@@ -19,12 +19,21 @@ let gColor;
 function setup() // fonction p5 appelé juste après le chargement de la page. Pratique. C'est la seule utilisation de p5 dans ce TP, on aurait pu s'en passer.
 {
   // Configuration des options du réseau de neurone
-
+  const lOptions = 
+  {
+    inputs: ['r','g','b'],//3 entrées chiffres des couleurs
+    outputs: ['couleur'], //2 sorties
+    task: 'classification',
+    debug: true
+  }
   // création du réseau de neurone avec ML5.
   gBrain = ml5.neuralNetwork(lOptions);
-  
 
 
+  //ajout de données d'apprentissage
+  gBrain.addData([0,0,0], ['foncé']);
+  gBrain.addData([255,255,255], ['clair']);
+  //ajouter des données par la suite
   
   // Normalisation des données (entre 0 et 1) et apprentissage.
   // Avec connection callback asynchrone quand l'apprentissage est terminé.
@@ -37,13 +46,18 @@ function changeColor(pEvent)
   gColor = (pEvent.target.value);
   console.log("HEX: " + gColor);
 
+  //convertir en RGB
+  r = parseInt(gColor.substring(1,3), 16);
+  g = parseInt(gColor.substring(3,5), 16);
+  b = parseInt(gColor.substring(5,7), 16);
+
 
 
   console.log("r: "+r+" g: "+g+" b: "+b);
 
 
 
-  console.log(lResult);
+  // console.log(lResult);
   // on demande au réseau de neurone de faire la classification, et de nous indiquer le label le plus probable.
   // asynchrone encore, en appelant notre fonction gotResult
 
