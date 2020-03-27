@@ -6,7 +6,7 @@ let gClassifier;
 let gImage;
 
 function preload() {
-  gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
+  gClassifier = ml5.imageClassifier('MobileNet');
   gImage = loadImage('img/hat.png');
 }
 function modeleCharge()
@@ -18,13 +18,21 @@ function modeleCharge()
 
 function setup() {
  // il faut initialiser le canvas & dessiner l'image
+ createCanvas(400,400);
+ gClassifier.classify(img, gotImage);
+ image(img,0,0);
 }
+
 
 // A appeler à la fin de la classification 
 function classification_done(error, results) {
   // cas d'erreur
   if (error) {
     console.error(error);
+  }else{
+    console.log(results);
+    createDiv(`Label: ${result[0].label}`);
+    createDiv(`Confidence: ${nf(result[0].confidence,0,2)}`);
   }
   
 // afficher le résultat en texte en rouge dessous l'image
