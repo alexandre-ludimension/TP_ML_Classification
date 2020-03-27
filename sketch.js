@@ -7,7 +7,7 @@ let gImage;
 
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/hat.png');
+  gImage = loadImage('img/mug.jpg');
 }
 function modeleCharge()
 {
@@ -20,7 +20,9 @@ function modeleCharge()
 function setup() 
 {
  // il faut initialiser le canvas & dessiner l'image
+
  createCanvas(600, 600);
+
  background(128);
  image(gImage, 0, 0, 200, 200);
 }
@@ -32,6 +34,13 @@ function classification_done(error, results) {
     console.error(error);
   }
   console.log(results);
+
+  let lTextSize = 20;
+  fill(255);
+  textSize(lTextSize);
+  text('Objet trouvé = ' + results[0].label, 0, height-100);
+  text('Confidence = ' + results[0].confidence, 0, height-50);
+   
   
 // afficher le résultat en texte en rouge dessous l'image
 
