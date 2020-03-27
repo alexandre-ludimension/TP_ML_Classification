@@ -32,14 +32,9 @@ function setup() // fonction p5 appelé juste après le chargement de la page. P
   // ajout de données d'apprentissage
   gBrain.addData([0,0,0], ['foncé']);
   gBrain.addData([255,255,255], ['clair']);
-  gBrain.addData([147,51,198], ['foncé']);
-  gBrain.addData([141,252,122], ['clair']);
-  gBrain.addData([248,241,7], ['clair']);
   // Ajoutez des données par la suite
   
   // Normalisation des données (entre 0 et 1) et apprentissage.
-  gBrain.normalizeData();
-  gBrain.train(finishedTraining);
   // Avec connection callback asynchrone quand l'apprentissage est terminé.
 
 }
@@ -58,14 +53,11 @@ function changeColor(pEvent)
 
   console.log("r: "+r+" g: "+g+" b: "+b);
 
- 
 
 
   //console.log(lResult);
   // on demande au réseau de neurone de faire la classification, et de nous indiquer le label le plus probable.
   // asynchrone encore, en appelant notre fonction gotResult
-  let lColors = {r,g,b};
-  gBrain.classify(lColors, gotResult);
 
 }
 
@@ -84,13 +76,5 @@ function gotResult(pError, pResults)
     console.error(pError);
     return;
   }
-
-  // si clair texte foncé
-  // sinon l'inverse
-  console.log(pResults);
-  gExample.style.color = pResults[0].label === "foncé" ? "white": "black";
-  // changer la couleur de fond
-  gExample.style.background = gColor;
-  //
 
 }
