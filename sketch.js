@@ -8,11 +8,12 @@ let gImage;
 
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/hat.png');
+  gImage = loadImage('img/fleur.jpg');
 }
 function modeleCharge() 
 {
-  console.log('Model Loaded!');
+
+  gClassifier.classify(gImage, classification_done);
   //le modèle est chargé, on peut traiter la donnée
   // il faut classifier
 
@@ -20,8 +21,8 @@ function modeleCharge()
 
 function setup() {
   createCanvas(500, 500);
-  gClassifier.classify(gImage, classification_done);
-  image(gImage, 0, 0);
+  background(128);
+  image(gImage, 0, 0, 200, 200);
  // il faut initialiser le canvas & dessiner l'image
 }
 
@@ -31,10 +32,15 @@ function classification_done(error, results) {
   if (error) {
     console.error(error);
   }
-  
   console.log(results);
-  createDiv("Label:" + results[0].label);
-  createDiv("Confidence: " + nf(results[0].confidence, 0, 2));
+
+  let lTextSize = 20;
+  fill(255);
+  textSize(lTextSize);
+  text('Objet trouvé = ' + results[0].label, 0, height-100);
+  text('Confidence = ' + results[0].confidence, 0, height-50);
+   
+  
 // afficher le résultat en texte en rouge dessous l'image
 
 }
