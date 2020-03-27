@@ -35,11 +35,24 @@ function setup() // fonction p5 appelé juste après le chargement de la page. P
   gBrain.addData([147,51,198], ['foncé']);
   gBrain.addData([141,252,122], ['clair']);
   gBrain.addData([248,241,7], ['clair']);
+  gBrain.addData([3,128,252],['foncé']);
+  gBrain.addData([255,0,0],['foncé']);
+  gBrain.addData([155,100,100],['foncé']);
+  gBrain.addData([129,130,125],['foncé']);
+  gBrain.addData([102,96,159],['foncé']);
+  gBrain.addData([239,244,11],['clair']);
+  gBrain.addData([0,255,172],['clair']);
+  gBrain.addData([26,230,199],['clair']);
+  gBrain.addData([14,241,207],['clair']);
+  gBrain.addData([79,209,46],['foncé']);
+  
+  
+  
   // Ajoutez des données par la suite
   
   // Normalisation des données (entre 0 et 1) et apprentissage.
   gBrain.normalizeData();
-  gBrain.train(finishedTraining);
+  gBrain.train({epochs: 100}, finishedTraining);
   // Avec connection callback asynchrone quand l'apprentissage est terminé.
 
 }
