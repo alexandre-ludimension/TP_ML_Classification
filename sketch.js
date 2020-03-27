@@ -16,8 +16,11 @@ function modeleCharge()
 
 }
 
-function setup() {
+function setup() 
+{
  // il faut initialiser le canvas & dessiner l'image
+ createCanvas(800, 800);
+ image(gImage, 0, 0, 200, 200);
 }
 
 // A appeler à la fin de la classification 
