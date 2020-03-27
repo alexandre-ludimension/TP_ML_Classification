@@ -1,4 +1,5 @@
 
+
 // Initialize the Image Classifier method with MobileNet. A callback needs to be passed.
 let gClassifier;
 
@@ -11,16 +12,17 @@ function preload() {
 }
 function modeleCharge()
 {
+  console.log('Model Loaded!');
   //le modèle est chargé, on peut traiter la donnée
   // il faut classifier
 
 }
 
-function setup() 
-{
+function setup() {
+  createCanvas(500, 500);
+  gClassifier.classify(gImage, classification_done);
+  image(gImage, 0, 0);
  // il faut initialiser le canvas & dessiner l'image
- createCanvas(800, 800);
- image(gImage, 0, 0, 200, 200);
 }
 
 // A appeler à la fin de la classification 
@@ -30,6 +32,9 @@ function classification_done(error, results) {
     console.error(error);
   }
   
+  console.log(results);
+  createDiv("Label:" + results[0].label);
+  createDiv("Confidence: " + nf(results[0].confidence, 0, 2));
 // afficher le résultat en texte en rouge dessous l'image
 
 }
