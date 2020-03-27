@@ -24,7 +24,9 @@ function modeleCharge()
 function setup() 
 {
  // il faut initialiser le canvas & dessiner l'image
- createCanvas(500, 500);
+
+ createCanvas(600, 600);
+
  background(128);
  //image(gImage, 0, 0, 200, 200);
 }
