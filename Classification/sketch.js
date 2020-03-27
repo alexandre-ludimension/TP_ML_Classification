@@ -6,18 +6,12 @@ let gClassifier;
 let gImage;
 let gVideo;
 
-<<<<<<< HEAD:sketch.js
-function preload() {
-  gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/chaise.jpg');
-=======
 function preload() 
 {
   gVideo = createCapture(VIDEO);
   gVideo.hide();
   gClassifier = ml5.imageClassifier('MobileNet', gVideo, modeleCharge);
   //gImage = loadImage('img/macaw.jpg');
->>>>>>> 89a6ae4810921788f9300898f881040368bdc547:Classification/sketch.js
 }
 function modeleCharge()
 {
