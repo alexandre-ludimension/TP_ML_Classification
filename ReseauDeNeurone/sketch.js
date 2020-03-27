@@ -19,23 +19,27 @@ let gColor;
 function setup() // fonction p5 appelé juste après le chargement de la page. Pratique. C'est la seule utilisation de p5 dans ce TP, on aurait pu s'en passer.
 {
   // Configuration des options du réseau de neurone
-  const lOptions = 
+  const lOptions =
   {
-    inputs: ['r','g','b'],//3 entrées chiffres des couleurs
-    outputs: ['couleur'], //2 sorties
+    inputs: ['r', 'g', 'b'], // 3 entrées chiffre couleurs RGB
+    outputs: ['couleur'], // 2 sorties
     task: 'classification',
     debug: true
   }
   // création du réseau de neurone avec ML5.
   gBrain = ml5.neuralNetwork(lOptions);
 
-
-  //ajout de données d'apprentissage
+  // ajout de données d'apprentissage
   gBrain.addData([0,0,0], ['foncé']);
   gBrain.addData([255,255,255], ['clair']);
-  //ajouter des données par la suite
+  gBrain.addData([141,252,122],['clair']);
+  gBrain.addData([147,51,198],['foncé']);
+  // Ajoutez des données par la suite
   
   // Normalisation des données (entre 0 et 1) et apprentissage.
+  gBrain.normalizeData();
+  gBrain.train(finishedTraining);
+
   // Avec connection callback asynchrone quand l'apprentissage est terminé.
 
 }
@@ -46,20 +50,22 @@ function changeColor(pEvent)
   gColor = (pEvent.target.value);
   console.log("HEX: " + gColor);
 
-  //convertir en RGB
-  r = parseInt(gColor.substring(1,3), 16);
-  g = parseInt(gColor.substring(3,5), 16);
-  b = parseInt(gColor.substring(5,7), 16);
-
+  // Convertir en RGB ?
+  r = parseInt(gColor.substring(1,3),16);
+  g = parseInt(gColor.substring(3,5),16);
+  b = parseInt(gColor.substring(5,7),16);
 
 
   console.log("r: "+r+" g: "+g+" b: "+b);
 
 
 
-  // console.log(lResult);
+  //console.log(lResult);
   // on demande au réseau de neurone de faire la classification, et de nous indiquer le label le plus probable.
   // asynchrone encore, en appelant notre fonction gotResult
+
+  let lColor = {r,g,b};
+  gBrain.classify(gColor, gotResult);
 
 }
 
@@ -78,5 +84,12 @@ function gotResult(pError, pResults)
     console.error(pError);
     return;
   }
+
+  //si clair texte foncé
+  //sinon l'inverse
+  console.log(pResults);
+  gExample.style.color = pResults[0].label === "foncé" ? "white": "black";
+  //changer la couleur de fond
+  gExample.style.background = gColor;
 
 }
