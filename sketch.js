@@ -7,7 +7,7 @@ let gImage;
 
 function preload() {
   gClassifier = ml5.imageClassifier('MobileNet', modeleCharge);
-  gImage = loadImage('img/hat.png');
+  gImage = loadImage('img/chaise.webp');
 }
 function modeleCharge()
 {
